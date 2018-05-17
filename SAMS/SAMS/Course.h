@@ -8,15 +8,21 @@ using namespace std;
 class Course
 {
 public:
-	virtual double GPA();
+	Course();
+	~Course();
+	double GPA();
 	void Print_Grade();
+	void Print_State();
+	void Change_State(Student*);
+	string Get_name();
+	void Grade(double);
+	int Get_kind();
 
 private:
-	int kind;	//0为必修，1为先修, 2为未选
+	int kind;	//0为必修，1为选修, 2为未选
 	unsigned int ID;
 	string name;
 	string teacher;
-	unsigned int credit;
+	int credit;
 	double grade;	//学生成绩，-1为未提交
-	vector<Student> student_list;
 };

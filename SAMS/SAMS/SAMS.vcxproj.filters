@@ -24,13 +24,10 @@
     <ClInclude Include="Course.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Required_Course.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Optional_Course.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="List.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Class.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,6 +36,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="List.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Course.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
