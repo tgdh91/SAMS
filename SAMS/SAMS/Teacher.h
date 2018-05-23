@@ -5,21 +5,25 @@
 
 using namespace std;
 
+class Class;
+
 class Teacher
 {
 public:
 	Teacher();
-	Teacher(unsigned int, string, string, vector<Class>);
+	void Reset(string, string, string, vector<Class>);
 	~Teacher();
 	void Give_Grade();
 	void Print_Class();
 	void View_Student();
 	string Get_Name();
 	vector<Class>* Get_Class();
+	string Get_ID();
+	vector<Class> Class_List;
 
 private:
-	unsigned int id;
+	string id;
 	string name;
 	string school;
-	vector<Class> Class_List;
+	
 };

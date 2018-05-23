@@ -2,11 +2,13 @@
 #include <vector>
 #include <iostream>
 
+using namespace std;
+
 Teacher::Teacher(){}
 
 Teacher::~Teacher(){}
 
-Teacher::Teacher(unsigned int ID, string Name, string School, vector<Class> Classes)
+void Teacher::Reset(string ID, string Name, string School, vector<Class> Classes)
 {
 	id = ID;
 	name = Name;
@@ -16,6 +18,7 @@ Teacher::Teacher(unsigned int ID, string Name, string School, vector<Class> Clas
 
 void Teacher::Give_Grade()
 {
+	Print_Class();
 	cout << "Please input the NO. of the course you want to give grade!" << endl;
 	int c;
 	cin >> c;
@@ -30,17 +33,17 @@ void Teacher::Give_Grade()
 	if (Class_List[c].Ifgrade)
 	{
 		cout << "Grade has been submit! Please press any key to return!" << endl;
-		getchar();
+		system("pause");
 		return;
 	}
 	system("cls");
 
 	for (int i = 0; i < Class_List[c].Student_List.size(); i++)
 	{
-		cout << Class_List[c].Student_List[i].Get_Name() << ':';
-		for (int j = 0; j < Class_List[c].Student_List[i].course.size(); j++)
+		cout << (Class_List[c].Student_List[i])->Get_Name() << ':';
+		for (int j = 0; j < (Class_List[c].Student_List[i])->course.size(); j++)
 		{
-			if (Class_List[c].Student_List[i].course[j].Get_name() == Class_List[c].name)
+			if ((Class_List[c].Student_List[i])->course[j].Get_name() == Class_List[c].name)
 			{
 				double g = -1;
 				cin >> g;
@@ -48,8 +51,9 @@ void Teacher::Give_Grade()
 				{
 					cout << "Input error! Please try again!" << endl;
 				}
-				Class_List[c].Student_List[i].course[j].Grade(g);
+				(Class_List[c].Student_List[i])->course[j].Input_Grade(g);
 				cout << endl;
+				break;
 			}
 		}
 	}
@@ -67,6 +71,7 @@ void Teacher::Print_Class()
 
 void Teacher::View_Student()
 {
+	Print_Class();
 	cout << "Please input the NO. of the course you want to view! Press '0' to return!" << endl;
 	int c;
 	cin >> c;
@@ -83,7 +88,7 @@ void Teacher::View_Student()
 
 	for (int i = 0; i < Class_List[c].Student_List.size(); i++)
 	{
-		cout << i + 1 << '\t' << Class_List[c].Student_List[i].Get_Name() << endl;
+		cout << i + 1 << '\t' << Class_List[c].Student_List[i]->Get_Name() << endl;
 	}
 
 	cout << "Please input the NO. of the student you want to view! Press '0' to return!" << endl;
@@ -94,10 +99,10 @@ void Teacher::View_Student()
 	while (d < 1 || d > Class_List[c].Student_List.size())
 	{
 		cout << "Input error! Please try again!" << endl;
-		cin >> c;
+		cin >> d;
 	}
-
-	Class_List[c].Student_List[d].Print_Student;
+	d--;
+	Class_List[c].Student_List[d]->Print_Student();
 
 	system("pause");
 }
@@ -110,4 +115,9 @@ string Teacher::Get_Name()
 vector<Class>* Teacher::Get_Class()
 {
 	return &Class_List;
+}
+
+string Teacher::Get_ID()
+{
+	return id;
 }

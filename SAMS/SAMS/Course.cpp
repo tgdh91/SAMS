@@ -1,9 +1,20 @@
 #include "Course.h"
 #include <iostream>
 #include <iomanip>
-#include "List.h"
+
+
 
 using namespace std;
+
+void Course::Reset(int Kind, string ID, string Name, string Teacher, int Credit, double Grade)
+{
+	kind = Kind;
+	id = ID;
+	name = Name;
+	teacher = Teacher;
+	credit = Credit;
+	grade = Grade;
+}
 
 void Course::Print_Grade()
 {
@@ -29,9 +40,9 @@ void Course::Change_State(Student* s)
 	Class* c = Data.Curricula_variable(teacher, name);
 	if (kind == 1)
 	{
-		for (vector<Student>::iterator it = (c->Student_List).begin(); it != (c->Student_List).end(); it++)
+		for (vector<Student*>::iterator it = (c->Student_List).begin(); it != (c->Student_List).end(); it++)
 		{
-			if (it->Get_Name() == s->Get_Name)
+			if ((*it)->Get_Name() == s->Get_Name())
 			{
 				(c->Student_List).erase(it);
 				break;
@@ -39,9 +50,10 @@ void Course::Change_State(Student* s)
 		}
 		kind = 2;
 	}
-	if (kind == 2)
+	else if (kind == 2)
 	{
-		(c->Student_List).push_back(*s);
+		(c->Student_List).push_back(s);
+
 		kind = 1;
 	}
 }
@@ -63,12 +75,21 @@ string Course::Get_name()
 	return name;
 }
 
-void Course::Grade(double g)
+void Course::Input_Grade(double g)
 {
 	grade = g;
+}
+
+double Course::Get_Grade()
+{
+	return grade;
 }
 
 int Course::Get_kind()
 {
 	return kind;
 }
+
+Course::Course(){}
+
+Course::~Course(){}

@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include "Student.h"
+#include "Class.h"
+#include "List.h"
+
 
 using namespace std;
 
@@ -15,12 +18,14 @@ public:
 	void Print_State();
 	void Change_State(Student*);
 	string Get_name();
-	void Grade(double);
+	void Input_Grade(double);
 	int Get_kind();
+	double Get_Grade();
+	void Reset(int, string, string, string, int, double);
 
 private:
 	int kind;	//0为必修，1为选修, 2为未选
-	unsigned int ID;
+	string id;
 	string name;
 	string teacher;
 	int credit;
