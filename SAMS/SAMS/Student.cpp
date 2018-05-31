@@ -20,11 +20,23 @@ void Student::Reset(string ID, string Name, string School, string ClassID, vecto
 
 void Student::Get_Grade()
 {
+	cout << "1.Grade Order" << endl << "2.Default Order" << endl;
+	int c;
+	cin >> c;
+	while (c < 1 || c > 2)
+	{
+		cout << "Input error! Please try again!" << endl;
+		cin >> c;
+	}
+	system("cls");
+	if (c == 1)
+		sort(course.begin(), course.end(), Grade_Comp);
 	cout << "Course\tGrade\tGPA\t" << endl;
 	for (vector<Course>::iterator it = course.begin(); it != course.end(); it++)
 	{
 		it->Print_Grade();
 	}
+	sort(course.begin(), course.end(), ID_Comp);
 }
 
 void Student::Change_Course()
@@ -57,7 +69,7 @@ void Student::Change_Course()
 				system("cls");
 				continue;
 			}
-			else if (course[c - 1].Get_Grade() != -1)
+			else if (course[c - 1].Ifgrade == 1)
 			{
 				cout << "Can't change the course already has grade!" << endl;
 				system("pause");
@@ -90,3 +102,22 @@ string Student::Get_ID()
 	return id;
 }
 
+ofstream& operator<<(ofstream& file, Student& s)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		file << s.course[i].Get_kind() << ' ' << s.course[i].Ifgrade << ' ' << s.course[i].Get_Grade() << endl;
+	}
+	return file;
+}
+
+ifstream& operator>>(ifstream& file, Student& s)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		file >> s.course[i].kind;
+		file >> s.course[i].Ifgrade;
+		file >> s.course[i].grade;
+	}
+	return file;
+}

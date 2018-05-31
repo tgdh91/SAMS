@@ -20,7 +20,7 @@ void Course::Print_Grade()
 {
 	if (kind != 2)
 	{
-		if (grade != -1)
+		if (Ifgrade == 1)
 			cout << name << '\t' << grade << '\t' << setprecision(4) << GPA() << endl;
 	}
 }
@@ -88,6 +88,11 @@ double Course::Get_Grade()
 int Course::Get_kind()
 {
 	return kind;
+}
+
+string Course::Get_ID()
+{
+	return id;
 }
 
 Course::Course(){}

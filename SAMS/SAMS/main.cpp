@@ -36,6 +36,7 @@ int main()
 			while (Teacher_Func(Tuser) != '0');
 		}
 	}
+	Save();
 
 	return 0;
 }

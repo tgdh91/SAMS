@@ -127,3 +127,43 @@ char Teacher_Func(Teacher* user)
 
 	return c;
 }
+
+void Save()
+{
+	system("cls");
+	cout << "0.Initialize" << endl << "1.Save" << endl << "2.Exit" << endl;
+	int c;
+	cin >> c;
+	while (c < 0 || c > 2)
+	{
+		cout << "Input error! Please try again!" << endl;
+		cin >> c;
+	}
+	ofstream file("document.txt");
+	if (c == 0)
+	{
+		file << "0 0 -1\n0 0 -1\n0 0 -1\n2 0 -1\n2 0 -1\n2 0 -1\n0 0 -1\n0 0 -1\n0 0 -1\n2 0 -1\n2 0 -1\n2 0 -1\n0 0 -1\n0 0 -1\n0 0 -1\n2 0 -1\n2 0 -1\n2 0 -1\n0 0 -1\n0 0 -1\n0 0 -1\n2 0 -1\n2 0 -1\n2 0 -1\n0\n4\n201801\n201802\n201803\n201804\n0\n4\n201801\n201802\n201803\n201804\n0\n4\n201801\n201802\n201803\n201804\n0\n0\n0\n0\n0\n0\n";
+	}
+	else if (c == 1)
+	{
+		for (int i = 0; i < Data.student.size(); i++)
+		{
+			file << Data.student[i];
+		}
+		for (int i = 0; i < Data.classes.size(); i++)
+		{
+			file << Data.classes[i];
+		}
+	}
+	file.close();
+}
+
+bool Grade_Comp(Course a, Course b)
+{
+	return a.grade < b.grade;
+}
+
+bool ID_Comp(Course a, Course b)
+{
+	return (a.Get_ID())[2] < (b.Get_ID())[2];
+}

@@ -16,4 +16,6 @@ public:
 	//bool Ifteach;// 0为不任教，1为任教
 	bool Ifgrade;// 0为未提交，1为提交
 	vector<Student*> Student_List;
+	friend ofstream& operator<<(ofstream&, Class&);
+	friend ifstream& operator>>(ifstream&, Class&);
 };

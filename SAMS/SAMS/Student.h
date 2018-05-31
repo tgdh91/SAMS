@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include "Course.h"
+#include <fstream>
+#include <algorithm>
+#include "function.h"
 
 using namespace std;
 
@@ -19,6 +22,8 @@ public:
 	string Get_Name();
 	vector<Course> course;
 	string Get_ID();
+	friend ofstream& operator<<(ofstream&, Student&);
+	friend ifstream& operator>>(ifstream&, Student&);
 
 private:
 	string id;

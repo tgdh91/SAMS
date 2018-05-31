@@ -4,6 +4,7 @@ using namespace std;
 
 List::List()
 {
+	ifstream file("document.txt");
 	Course *c = new Course;
 	c->Reset(0, "001", "Chinese", "Zhao", 4, -1);
 	course.push_back(*c);
@@ -21,28 +22,38 @@ List::List()
 
 	Student *s = new Student;
 	s->Reset("201801", "Sam", "Computer", "20181234", course);
+	file >> *s;
 	student.push_back(*s);
 	s->Reset("201802", "DaMing", "Computer", "20181234", course);
+	file >> *s;
 	student.push_back(*s);
 	s->Reset("201803", "Amy", "Computer", "20181234", course);
+	file >> *s;
 	student.push_back(*s);
 	s->Reset("201804", "Lili", "Computer", "20181234", course);
+	file >> *s;
 	student.push_back(*s);
 	free(s);
 
 	Class *cl = new Class;
-	cl->Reset("Chinese", 0, student);
-	classes.push_back(*cl);
-	cl->Reset("Math", 0, student);
-	classes.push_back(*cl);
-	cl->Reset("English", 0, student);
-	classes.push_back(*cl);
 	vector<Student> Empty_Student;
+	cl->Reset("Chinese", 0, Empty_Student);
+	file >> *cl;
+	classes.push_back(*cl);
+	cl->Reset("Math", 0, Empty_Student);
+	file >> *cl;
+	classes.push_back(*cl);
+	cl->Reset("English", 0, Empty_Student);
+	file >> *cl;
+	classes.push_back(*cl);
 	cl->Reset("Art", 0, Empty_Student);
+	file >> *cl;
 	classes.push_back(*cl);
 	cl->Reset("Music", 0, Empty_Student);
+	file >> *cl;
 	classes.push_back(*cl);
 	cl->Reset("PE", 0, Empty_Student);
+	file >> *cl;
 	classes.push_back(*cl);
 	free(cl);
 
@@ -63,6 +74,7 @@ List::List()
 	t->Reset("201003", "Sun", "Computer", Temp_Class);
 	teacher.push_back(*t);
 	Temp_Class.clear();
+	file.close();
 }
 
 List::~List(){}

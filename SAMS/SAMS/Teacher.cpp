@@ -32,6 +32,19 @@ void Teacher::Give_Grade()
 
 	if (Class_List[c].Ifgrade)
 	{
+		system("cls");
+		for (int i = 0; i < Class_List[c].Student_List.size(); i++)
+		{
+			cout << (Class_List[c].Student_List[i])->Get_ID() << '\t' << (Class_List[c].Student_List[i])->Get_Name() << ':';
+			for (int j = 0; j < (Class_List[c].Student_List[i])->course.size(); j++)
+			{
+				if ((Class_List[c].Student_List[i])->course[j].Get_name() == Class_List[c].name)
+				{
+					cout << (Class_List[c].Student_List[i])->course[j].Get_Grade() << endl;
+					break;
+				}
+			}
+		}
 		cout << "Grade has been submit! Please press any key to return!" << endl;
 		system("pause");
 		return;
@@ -40,16 +53,19 @@ void Teacher::Give_Grade()
 
 	for (int i = 0; i < Class_List[c].Student_List.size(); i++)
 	{
-		cout << (Class_List[c].Student_List[i])->Get_Name() << ':';
+		cout << (Class_List[c].Student_List[i])->Get_ID() << '\t' << (Class_List[c].Student_List[i])->Get_Name() << ':';
 		for (int j = 0; j < (Class_List[c].Student_List[i])->course.size(); j++)
 		{
 			if ((Class_List[c].Student_List[i])->course[j].Get_name() == Class_List[c].name)
 			{
+				if ((Class_List[c].Student_List[i])->course[j].Get_Grade() != -1)
+					cout << (Class_List[c].Student_List[i])->course[j].Get_Grade() << "\tRevise as:";
 				double g = -1;
 				cin >> g;
 				while (g < 0 || g > 100)
 				{
 					cout << "Input error! Please try again!" << endl;
+					cin >> g;
 				}
 				(Class_List[c].Student_List[i])->course[j].Input_Grade(g);
 				cout << endl;
@@ -57,7 +73,31 @@ void Teacher::Give_Grade()
 			}
 		}
 	}
-	Class_List[c].Ifgrade = 1;
+	cout << "1.Submit" << endl << "2.Not submit" << endl;
+	int a;
+	cin >> a;
+	while (a != 1 && a != 2)
+	{
+		cout << "Input error! Please try again!" << endl;
+		cin >> a;
+	}
+	if (a == 1)
+	{
+		for (int i = 0; i < Class_List[c].Student_List.size(); i++)
+		{
+			for (int j = 0; j < (Class_List[c].Student_List[i])->course.size(); j++)
+			{
+				if ((Class_List[c].Student_List[i])->course[j].Get_name() == Class_List[c].name)
+				{
+					(Class_List[c].Student_List[i])->course[j].Ifgrade = 1;
+					break;
+				}
+			}
+		}
+		Class_List[c].Ifgrade = 1;
+	}
+		
+
 	system("pause");
 }
 
