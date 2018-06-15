@@ -26,6 +26,10 @@ public:
 	int kind;	//0为必修，1为选修, 2为未选
 	double grade;	//学生成绩，-1无成绩
 	string Get_ID();
+	string Get_Teacher()
+	{
+		return teacher;
+	}
 
 private:
 	string id;

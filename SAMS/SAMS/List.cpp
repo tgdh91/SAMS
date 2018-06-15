@@ -18,7 +18,7 @@ List::List()
 	course.push_back(*c);
 	c->Reset(2, "006", "PE", "Sun", 3, -1);
 	course.push_back(*c);
-	free(c);
+	delete c;
 
 	Student *s = new Student;
 	s->Reset("201801", "Sam", "Computer", "20181234", course);
@@ -33,7 +33,7 @@ List::List()
 	s->Reset("201804", "Lili", "Computer", "20181234", course);
 	file >> *s;
 	student.push_back(*s);
-	free(s);
+	delete s;
 
 	Class *cl = new Class;
 	vector<Student> Empty_Student;
@@ -55,7 +55,7 @@ List::List()
 	cl->Reset("PE", 0, Empty_Student);
 	file >> *cl;
 	classes.push_back(*cl);
-	free(cl);
+	delete cl;
 
 	Teacher *t = new Teacher;
 	vector<Class> Temp_Class;
@@ -74,6 +74,7 @@ List::List()
 	t->Reset("201003", "Sun", "Computer", Temp_Class);
 	teacher.push_back(*t);
 	Temp_Class.clear();
+	delete t;
 	file.close();
 }
 
@@ -97,21 +98,6 @@ vector<Course> List::Get_Course()
 vector<Class>* List::Get_Class()
 {
 	return &classes;
-}
-
-void List::Add_Student(Student s)
-{
-	student.push_back(s);
-}
-
-void List::Add_Teacher(Teacher t)
-{
-	teacher.push_back(t);
-}
-
-void List::Add_Course(Course c)
-{
-	course.push_back(c);
 }
 
 Class* List::Curricula_variable(string teac, string course)	//在Class内查找相应的course

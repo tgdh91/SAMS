@@ -20,10 +20,6 @@ public:
 	vector<Teacher> Get_Teacher();
 	vector<Course> Get_Course();
 	vector<Class>* Get_Class();
-	void Add_Student(Student);
-	void Add_Teacher(Teacher);
-	void Add_Course(Course);
-	void Add_Class(Class);
 	Class* Curricula_variable(string, string);
 
 

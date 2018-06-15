@@ -43,9 +43,9 @@ Student* Student_Login()
 				return &Data.student[i];
 			}
 		}
-
-		cout << "Inexistence ID!" << endl;
-		system("pause");
+		throw 1;
+		//cout << "Inexistence ID!" << endl;
+		//system("pause");
 		return NULL;
 }
 
@@ -94,8 +94,9 @@ Teacher* Teacher_Login()
 				return &(Data.teacher[i]);
 			}
 		}
-		cout << "Inexistence ID!" << endl;
-		system("pause");
+		throw 1;
+		//cout << "Inexistence ID!" << endl;
+		//system("pause");
 		return NULL;
 
 }
